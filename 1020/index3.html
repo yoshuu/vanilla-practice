@@ -1,0 +1,19 @@
+<body>
+  <form class="login-form">
+    <div>username: <input name="username" /></div>
+    <div>password: <input name="password1" type="password" /></div>
+    <div>password again: <input name="password2" type="password" /></div>
+    <input type="submit" />
+  </form>
+  <script>
+    const element = document.querySelector(".login-form");
+    element.addEventListener("submit", function (e) {
+      const input1 = document.querySelector(`input[name=password1]`);
+      const input2 = document.querySelector(`input[name=password2]`);
+      if (input1.value !== input2.value) {
+        alert("密碼不同");
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>

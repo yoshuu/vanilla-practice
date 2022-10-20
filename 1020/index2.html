@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <a href="##">請按我</a>
+    </div>
+    <script>
+      // const element = document.querySelector("div");
+      // element.addEventListener("click", () => {
+      //   console.log("這裡會顯示出來");
+      // });
+
+      const element2 = document.querySelector("a");
+      element2.addEventListener("click", (e) => {
+        console.log(e.target);
+      });
+    </script>
+  </body>
+</html>
