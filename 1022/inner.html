@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>text a innerText and innerHTML and outerHTML</title>
+  </head>
+  <body>
+    <div>
+      你好嗎
+      <a>我很好</a>
+    </div>
+    <script>
+      // document.querySelector("div").innerText = `
+      // <p>我很好</p>
+      // <p>我很好</p>
+      // `;
+
+      console.log(document.querySelector("div").outerHTML);
+    </script>
+  </body>
+</html>
+
+<!-- 我可不可以理解成是，text會把裡面所有東西都變成字，而HTML會把裡面的東西變成像是html樣式一樣，比如說假如裡面還多寫一個P的tag，那麼用html寫出來會自動幫忙轉換，可以來多多做測試，在練習階段的時候 -->
