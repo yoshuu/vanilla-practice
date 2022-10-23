@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>child</title>
+  </head>
+  <body>
+    <p>我是很早之前的p</p>
+    <div>
+      <p>我是p</p>
+      <a>我是a</a>
+    </div>
+    <script>
+      const elements = document.querySelector("div");
+
+      elements.removeChild(document.querySelector("p"));
+    </script>
+  </body>
+</html>
