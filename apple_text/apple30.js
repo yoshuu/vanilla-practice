@@ -1,0 +1,4 @@
+whiteWork(function () {
+  redWork();
+});
+yellowWork();
