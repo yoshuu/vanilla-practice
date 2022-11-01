@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Rectangle {
+        constructor(height, width) {
+          this.name = "Rectangle";
+          this.height = height;
+          this.width = width;
+        }
+        sayName() {
+          console.log(`Hi, I am a ${this.name}.`);
+        }
+        get area() {
+          return this.height * this.width;
+        }
+        set area(value) {
+          this._area = value;
+        }
+      }
+
+      class Square extends Rectangle {
+        constructor(length) {
+          super(length, length);
+          this.height; // ReferenceError, super needs to be called first!
+
+          // Here, it calls the parent class's constructor with lengths
+          // provided for the Rectangle's width and height
+
+          // Note: In derived classes, super() must be called before you
+          // can use 'this'. Leaving this out will cause a reference error.
+          this.name = "Square";
+        }
+      }
+      var s = new Square(12);
+      console.log(s.name);
+    </script>
+  </body>
+</html>
