@@ -1,0 +1,65 @@
+<div class="drag-area">
+  <div class="drag-marker">DRAG</div>
+</div>
+<div class="explanation">
+  <h1>iOS Safari 15 Beta Issue – URL Bar changing size on non-scroll events</h1>
+
+  <h2>Abstract</h2>
+  <p>
+    When a dev explicitly tells iOS Safari not to scroll the document for
+    certain touch interactions, Safari still detects the user's finger dragging
+    up/down and expands or collapses the redesigned URL bar. For many
+    interactive experiences, this will be obnoxious and can even break things
+    for end users.
+  </p>
+
+  <h2>Repro</h2>
+  <p>
+    The area above uses <code>touch-action: none;</code> to enable a custom drag
+    interaction without triggering scrolling etc. Drag a finger up and down in
+    the above area somewhat quickly, and the redesigned URL bar will often
+    repeatedly expand and collapse. This happens even when there's a significant
+    horizontal component to the finger's movement vector.
+  </p>
+
+  <h2>Expected Behavior</h2>
+  <p>
+    The URL bar should only expand/collapse on top-level document scrolling.
+  </p>
+  <p>
+    Gestures on <code>touch-action: none;</code> surfaces, as well as situations
+    where the user calls <code>event.preventDefault()</code> in a non-passive
+    touchmove or pointermove listener should not cause the URL bar to
+    expand/collapse.
+  </p>
+
+  <h2>Actual Behavior</h2>
+  <p>
+    While Safari does respect <code>touch-action</code> to some extent and
+    prevents scrolling, it does not prevent the browser from expanding or
+    collapsing the URL bar. Vertical swiping happening anywhere for any reason
+    can trigger the state change.
+  </p>
+
+  <h2>Other Notes</h2>
+  <p>
+    There are more demos I could create showing real breaking issues, but they
+    boil down to this core problem. E.g. The state change of the URL bar also
+    changes the space available to fixed position elements. This can wreck havok
+    with interactive modals. In the use case where an iframe is placed in a
+    fixed position modal and has any scrolling or dragging features, the entire
+    iframe is continuously resized. I have an embedded app where I'm using
+    react-beautiful-dnd for drag/drop in a list, and the iframe resize events
+    cancel the drag interaction. This completely breaks the app. User tries to
+    drag item; url bar changes state; iframe resizes and dispatches resize
+    event; drag is canceled.
+  </p>
+  <p>
+    I'm aware that Safari hijacks other drag gestures, e.g. swipe right/left
+    from edges to navigate. Those are often annoying for interactive experiences
+    as well, but at least the affected area is restricted. Here, swipes occuring
+    anywhere on the page trigger the URL bar to change state.
+  </p>
+</div>
+
+<footer>Fixed Footer</footer>
