@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1113</title>
+  </head>
+  <body>
+    <!-- change 選單 -->
+    <select id="teamId">
+      <option value="湖人隊">湖人隊</option>
+      <option value="公牛隊">公牛隊</option>
+      <option value="爵士隊">爵士隊</option>
+    </select>
+
+    <!-- 清單內容 -->
+    <ul class="list"></ul>
+    <script>
+      var data = [
+        {
+          team: "湖人隊",
+          player: "Shaquille O'Neal",
+        },
+        {
+          team: "公牛隊",
+          player: "Michael Jordan",
+        },
+        {
+          team: "爵士隊",
+          player: "Karl Marlon",
+        },
+      ];
+
+      var team = document.getElementById("teamId"); //change 選單
+      var list = document.querySelector(".list"); // 清單內容
+
+      //在change選單，建立好 function 名稱
+      team.addEventListener("change", updateList, false);
+      var dataLen = data.length;
+
+      function updateList(e) {
+        var select = e.target.value; //宣告這個事件中的目標為選單的值
+        var str = ""; //組一個字串
+        for (var i = 0; i < dataLen; i++) {
+          //用 for 迴圈篩選資料
+          if (select == data[i].team) {
+            //如選單當中找到 team
+            str += "<li>" + data[i].player + "</li>"; //球員名稱字串
+          }
+        }
+        list.innerHTML = str; //將 list 內容丟回字串，印在網頁上
+      }
+    </script>
+  </body>
+</html>
