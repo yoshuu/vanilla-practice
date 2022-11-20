@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>連結試算表 - 表單Form</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      .form-control {
+        box-shadow: 0px 1px 7px #9f9898;
+        line-height: 2.5;
+      }
+
+      .apple {
+        color: gray;
+      }
+      .container-contact {
+        padding: 20px;
+        text-align: center;
+        color: #000;
+
+        width: 100%;
+      }
+
+      .container-contact h3 {
+        font-size: 30px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .btn {
+        width: 100%;
+        font-size: 20px;
+        margin: 20px 0px 20px 0px;
+        background-color: #a63f24;
+        color: rgb(255, 255, 255);
+        border-radius: 10px;
+        transition: 1s;
+      }
+
+      .btn:hover {
+        background-color: rgb(178, 224, 84);
+        color: black;
+      }
+
+      input {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-contact">
+      <h2>市民好聲音</h2>
+      <p class="apple">請留下你的資料，收到後我們會儘速聯絡你。</p>
+
+      <div class="row">
+        <!-- 第一欄位 -->
+        <div class="col-sm-2"></div>
+        <!-- 第二欄位 -->
+        <div class="col-sm-8">
+          <form id="myForm">
+            <div class="row">
+              <!-- 第一個輸入 - 稱呼 -->
+              <div class="col-sm-12 form-group">
+                <input
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="稱呼"
+                  type="text"
+                  required
+                />
+              </div>
+              <!-- 第二個輸入 - 手機號碼 -->
+              <div class="col-sm-12 form-group">
+                <input
+                  id="comments"
+                  name="comments"
+                  class="form-control"
+                  placeholder="手機號碼"
+                  required
+                />
+              </div>
+            </div>
+            <!-- 第三個輸入 - email / Line ID -->
+            <div class="col-sm-12 form-group">
+              <input
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="email / Line ID"
+                type="email"
+                required
+              />
+            </div>
+            <div class="row">
+              <div class="col-sm-12 form-group">
+                <button class="btn" type="submit" id="submitButton">
+                  送出
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript程式 -->
+    <script>
+      // 抓輸入的值
+
+      function getValues() {
+        var name = document.getElementById("name");
+        var email = document.getElementById("email");
+        var comments = document.getElementById("comments");
+
+        var rowData = {
+          name: name.value,
+          email: email.value,
+          comments: comments.value,
+        };
+
+        // 上傳資料
+        google.script.run.addData(rowData);
+        // 清除表單上的資料
+        document.getElementById("myForm").reset();
+        // 完成後的訊息
+        alert("謝謝您的訊息，我們會儘快處理您的留言，謝謝！");
+      }
+
+      document
+        .getElementById("submitButton")
+        .addEventListener("click", getValues);
+    </script>
+  </body>
+</html>
